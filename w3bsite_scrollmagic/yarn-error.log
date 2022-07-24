@@ -1,0 +1,36 @@
+Arguments: 
+  /usr/local/Cellar/node/18.6.0/bin/node /usr/local/Cellar/yarn/1.22.19/libexec/bin/yarn.js init
+
+PATH: 
+  /Users/albhuan/arm_homebrew/Cellar/emacs-mac/emacs-27.2-mac-8.2/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/var/lib/snapd/snap/bin:/Users/albhuan/.config/zsh_custom/../dontrun_custom/Alacritty.app/Contents/MacOS:/Users/albhuan/.config/bin:/Users/albhuan/.local/bin:/Users/albhuan/.cargo/bin:/Users/albhuan/.config/scripts/wabt/bin:/Users/albhuan/.yarn/bin:/usr/local/Cellar/llvm/10.0.0_1/bin:/usr/local/opt/ncurses/bin:/Users/albhuan/Library/Python/3.8/bin:/Library/Frameworks/Python.framework/Versions/3.8/bin:/Users/albhuan/Library/Python/3.7/bin:/Users/albhuan/anaconda3/bin:/Users/albhuan/anaconda/bin:/usr/lib/emscripten:/../dontrun_custom/Alacritty.app/Contents/MacOS:/Users/albhuan/.bin:/usr/local/smlnj/bin:/Users/albhuan/.fzf/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.6.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/usr/local/Cellar/yarn/1.22.19/libexec/lib/cli.js:137150:13)
+      at Interface.emit (node:events:513:28)
+      at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1124:18)
+      at ReadStream.onkeypress (node:internal/readline/interface:273:20)
+      at ReadStream.emit (node:events:513:28)
+      at emitKeys (node:internal/readline/utils:357:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+      at ReadStream.emit (node:events:513:28)
+      at addChunk (node:internal/streams/readable:324:12)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
