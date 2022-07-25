@@ -9,7 +9,7 @@ const sections = {
             'icon': {
                 'enter_x': 0.60430464, 
                 'leave_x': 0.33940397,
-                'svg_el': `<svg style="width: 100%;" viewBox="1 0 1 1.2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                'svg_el': `<svg style="width: 100%;" viewBox="1 0 1 1.15" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M1.65302 0V0.130604L1.49318 0.103314L1.35088 0.116959L1.23197 0.165692L1.12086 0.237817L1.25341 0.19883H1.35088L1.19298 0.272905L1.08772 0.337232L1 0.42885L1.10136 0.348928L1.15205 0.325536L1.10136 0.469786V0.592593L1.1345 0.719298L1.68226 1.07602L1.51462 0.510721V0.448343L1.55945 0.403509L1.52827 0.448343L1.55945 0.547758L1.61598 0.592593L1.7154 0.623782L1.76218 0.666667L1.77778 0.719298V0.785575L1.76218 0.810916H1.92203L2 0.719298L1.82066 0.249513H1.77778L1.94542 0.187135L1.846 0.148148L1.73294 0.130604L1.65302 0.148148L1.61598 0.19883L1.50292 0.210526L1.4347 0.224172L1.36842 0.261209L1.29045 0.337232L1.24172 0.403509L1.20858 0.489279L1.25341 0.403509L1.35088 0.325536L1.47758 0.294347L1.34113 0.348928L1.29045 0.419103L1.2807 0.510721L1.29045 0.592593L1.34113 0.719298V1.17349" stroke="white" stroke-width="0.02"/>
 </svg>`
             }
@@ -18,7 +18,7 @@ const sections = {
             'title': "another thingy",
             'description': 'hewo hewohewo hewohewo hewohewo hewohewo hewohewo hewohewo hewohewo hewohewo hewo',
             'icon': {
-                'enter_x': 0.60430464, 
+                'enter_x': 0.645, 
                 'leave_x': 0.33940397,
                 'svg_el': `<svg style="width: 100%;" viewBox="1 0 1 1.2" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M1.65302 0V0.130604L1.49318 0.103314L1.35088 0.116959L1.23197 0.165692L1.12086 0.237817L1.25341 0.19883H1.35088L1.19298 0.272905L1.08772 0.337232L1 0.42885L1.10136 0.348928L1.15205 0.325536L1.10136 0.469786V0.592593L1.1345 0.719298L1.68226 1.07602L1.51462 0.510721V0.448343L1.55945 0.403509L1.52827 0.448343L1.55945 0.547758L1.61598 0.592593L1.7154 0.623782L1.76218 0.666667L1.77778 0.719298V0.785575L1.76218 0.810916H1.92203L2 0.719298L1.82066 0.249513H1.77778L1.94542 0.187135L1.846 0.148148L1.73294 0.130604L1.65302 0.148148L1.61598 0.19883L1.50292 0.210526L1.4347 0.224172L1.36842 0.261209L1.29045 0.337232L1.24172 0.403509L1.20858 0.489279L1.25341 0.403509L1.35088 0.325536L1.47758 0.294347L1.34113 0.348928L1.29045 0.419103L1.2807 0.510721L1.29045 0.592593L1.34113 0.719298V1.17349" stroke="white" stroke-width="0.02"/>
@@ -60,27 +60,58 @@ function budget_react_inital_render() {
     container.innerHTML = inner_html;
 }
 
-function setup_bg_canvas() {
-    const canvas = document.getElementById('bg-canvas');
+function setup_bg_svg(controller) {
+    const bg = document.getElementById('bg-svg');
 
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = "green";
-    ctx.fillRect(1, 1, 100, 100)
-    console.log(canvas)
+    const reset_bg_canvas = () => {
+        bg.setAttribute('viewBox', `0 0 ${document.documentElement.scrollWidth} ${document.documentElement.scrollHeight}`);
+        bg.setAttribute('width', document.documentElement.scrollWidth);
+        bg.setAttribute('height', document.documentElement.scrollHeight);
+        make_connecting_lines(controller);
+    }
 
     // ensure canvas always take up the full background
-    window.addEventListener('resize', (ev) => {
-        console.log(document.documentElement.scrollHeight, document.documentElement.scrollWidth)
-        //console.log(ev.target.clientHeight, ev.target.innerHeight)
-        //console.log('resizing canvas', obj.innerWidth, obj.innerHeight)
-        //canvas.viewBox = `0 0 ${document.documentElement.scrollHeight} ${document.documentElement.scrollWidth}`;
-        canvas.width = document.documentElement.scrollWidth;
-        canvas.height = document.documentElement.scrollHeight;
-    });
+    window.addEventListener('resize', reset_bg_canvas);
+    reset_bg_canvas();
+}
+function make_connecting_lines(controller) {
+    const path_els = Array.from(document.querySelectorAll('.has-line-art path'));
+    const bg = document.getElementById('bg-svg');
+
+    document.addEventListener('click', ev => console.log('click', ev.clientX, ev.clientY))
+
+    const svg_infos = Array.from(Object.values(sections)).map(sec => sec.filter(p => p.hasOwnProperty('icon')).map(p => p.icon)).flat()
+    console.log(svg_infos)
+
+    const connections = document.createDocumentFragment();
+    for (let i=1; i<path_els.length; i++) {
+        const prev_box = path_els[i-1].parentElement.getBoundingClientRect();
+        const next_box = path_els[i].parentElement.getBoundingClientRect();
+
+        const prev_info = svg_infos[i-1];
+        const next_info = svg_infos[i];
+
+
+        const prev_pos = [prev_box.x * (1 - prev_info.leave_x) + prev_box.right * prev_info.leave_x, prev_box.bottom];
+        const next_pos = [next_box.x * (1 - next_info.enter_x) + next_box.right * next_info.enter_x, next_box.top];
+        const vertical_half_way = (prev_box.bottom + next_box.top) / 2;
+
+        console.log(prev_box.left, prev_box.right, prev_pos, next_pos)
+
+
+        const connector = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        connector.setAttribute('d', `M ${prev_pos.join(',')} L ${next_pos.join(',')}`);    // straight line
+        connector.setAttribute('d', `M ${prev_pos.join(',')} C ${prev_pos[0]},${vertical_half_way} ${next_pos[0]},${vertical_half_way} ${next_pos.join(',')}`);    // straight line
+        connector.setAttribute('stroke-width', 5);
+        connector.setAttribute('stroke', 'white');
+
+        connections.appendChild(connector);
+    }
+    bg.appendChild(connections);
 }
 
-function setup_scrollmagic() {
-    const controller = new ScrollMagic.Controller();
+
+function setup_scrollmagic(controller) {
 
     // setup dash length and offset for all the paths to create the animation appearance
     const path_els = Array.from(document.querySelectorAll('.has-line-art path'));
@@ -89,6 +120,8 @@ function setup_scrollmagic() {
         const len = path.getTotalLength();
         path.style.strokeDasharray = len;
         path.style.strokeDashoffset = len;
+        path.setAttribute('stroke-linejoin', 'round');
+        path.setAttribute('stroke-width', '0.02');
     });
 
     // create tweens and register scenes for each path
@@ -120,8 +153,9 @@ function setup_scrollmagic() {
 
 function main() {
     budget_react_inital_render();
-    setup_bg_canvas();
-    setup_scrollmagic();
+    const controller = new ScrollMagic.Controller();
+    setup_scrollmagic(controller);
+    setup_bg_svg(controller);
 }
 
 document.addEventListener('DOMContentLoaded', main);
