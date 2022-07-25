@@ -1,7 +1,15 @@
 {
-  "dependencies": {
-    "gasp": "^0.0.2",
-    "marked": "^4.0.18",
-    "scrollmagic": "^2.0.8"
-  }
+    "private": true,
+    "dependencies": {
+        "gasp": "^0.0.2",
+        "marked": "^4.0.18",
+        "nanoid": "^4.0.0",
+        "path-data-polyfill": "^1.0.3",
+        "scrollmagic": "^2.0.8",
+        "webpack": "^5.74.0"
+    },
+    "devDependencies": {
+        "webpack-cli": "^4.10.0",
+        "webpack-dev-server": "^4.9.3"
+    }
 }
