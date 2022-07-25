@@ -14,7 +14,6 @@ console.log("hello world");
     // @license
     //   MIT License
     if (!SVGPathElement.prototype.getPathData || !SVGPathElement.prototype.setPathData) {
-        console.log("helooooooooooooooooooooo")
       (function() {
         var commandsMap = {
           "Z":"Z", "M":"M", "L":"L", "C":"C", "Q":"Q", "A":"A", "H":"H", "V":"V", "S":"S", "T":"T",
@@ -1120,7 +1119,7 @@ console.log("hello world");
         };
       })();
     }
-})
+})();
 
 const sections = {
     'Projects': [
@@ -1201,17 +1200,52 @@ function setup_bg_svg(controller) {
     reset_bg_svg();
 }
 function make_icon_lines_on_bg(controller) {
+    const bg = document.getElementById('bg-svg');
     const svg_infos = Array.from(Object.values(sections)).map(sec => sec.filter(p => p.hasOwnProperty('icon')).map(p => p.icon)).flat()
     const paths_to_convert = get_path_els();
     console.log(svg_infos)
 
+    const doc_frag = document.createDocumentFragment();
     for (let path of paths_to_convert) {
         const svg = path.parentElement;
         const bbox = svg.getBoundingClientRect();
         const scaling_factor = (bbox.right - bbox.left) / svg.viewBox.baseVal.width;
-        const transform = ([x, y]) => [x*scaling_factor + bbox.x, y*scaling_factor + bbox.y];
-        console.log(path, path.getPathData);
+        const [ off_x, off_y ] = [ svg.viewBox.baseVal.x, svg.viewBox.baseVal.y ]; // og vbox offset
+        //const scaling_factor = 100
+        //const transform = ([x, y]) => [x*scaling_factor + bbox.x, y*scaling_factor + bbox.y];
+        //const transform = ;
+        //const transform_works_for = 'MVHL';
+        //console.log(bbox.x, bbox.y)
+        console.log(off_y)
+
+        //const transform_by_type = {
+        //    'M': ([x, y]) => [x*scaling_factor + bbox.x, y*scaling_factor + bbox.y],
+        //    'L': ([x, y]) => [x*scaling_factor + bbox.x, y*scaling_factor + bbox.y],
+        //    'H': ([x]) => [x*scaling_factor + bbox.x],
+        //    'V': ([y]) => [y*scaling_factor + bbox.y],
+        //}
+        const transform_by_type = {
+            'M': ([x, y]) => [(x-off_x)*scaling_factor + bbox.x, (y-off_y)*scaling_factor + bbox.y],
+            'L': ([x, y]) => [(x-off_x)*scaling_factor + bbox.x, (y-off_y)*scaling_factor + bbox.y],
+            'H': ([x]) => [(x-off_x)*scaling_factor + bbox.x],
+            'V': ([y]) => [(y-off_y)*scaling_factor + bbox.y],
+        }
+
+        const new_path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        //new_path.setPathData(path.getPathData().map(({ type, values }) => ({ type, values: values.map(transform) }) ));
+        new_path.setPathData(path.getPathData().map(({ type, values }) => {
+            //console.log(type, values, transform_by_type.hasOwnProperty(type), '\n\n\n');
+            return ({ type, values: transform_by_type.hasOwnProperty(type) ? transform_by_type[type](values) : values })
+        }  ));
+        console.log(new_path.getPathData()[0].values)
+        new_path.setAttribute('stroke-width', path.getAttribute('stroke-width') * scaling_factor);    // keep original stroke from svg
+        //new_path.setAttribute('stroke-width', 5);                                                     // reset all stroke to 5
+        new_path.setAttribute('stroke', '#326ccc');
+        new_path.setAttribute('fill', 'none')
+        new_path.setAttribute('stroke-linejoin', 'round')
+        doc_frag.appendChild(new_path);
     }
+    bg.appendChild(doc_frag);
 
     //for (let info of svg_infos) {
     //    const icon = el_to_make.children[0]
