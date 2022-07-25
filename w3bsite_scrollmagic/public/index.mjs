@@ -63,7 +63,8 @@ function budget_react_inital_render() {
 function setup_bg_svg(controller) {
     const bg = document.getElementById('bg-svg');
 
-    const reset_bg_canvas = () => {
+    const reset_bg_svg = () => {
+        while (bg.lastChild) bg.removeChild(bg.lastChild);
         bg.setAttribute('viewBox', `0 0 ${document.documentElement.scrollWidth} ${document.documentElement.scrollHeight}`);
         bg.setAttribute('width', document.documentElement.scrollWidth);
         bg.setAttribute('height', document.documentElement.scrollHeight);
@@ -71,8 +72,8 @@ function setup_bg_svg(controller) {
     }
 
     // ensure canvas always take up the full background
-    window.addEventListener('resize', reset_bg_canvas);
-    reset_bg_canvas();
+    window.addEventListener('resize', reset_bg_svg);
+    reset_bg_svg();
 }
 function make_connecting_lines(controller) {
     const path_els = Array.from(document.querySelectorAll('.has-line-art path'));
@@ -85,27 +86,41 @@ function make_connecting_lines(controller) {
 
     const connections = document.createDocumentFragment();
     for (let i=1; i<path_els.length; i++) {
+        // calculate the endpoints of the lines
         const prev_box = path_els[i-1].parentElement.getBoundingClientRect();
         const next_box = path_els[i].parentElement.getBoundingClientRect();
-
         const prev_info = svg_infos[i-1];
         const next_info = svg_infos[i];
-
-
         const prev_pos = [prev_box.x * (1 - prev_info.leave_x) + prev_box.right * prev_info.leave_x, prev_box.bottom];
         const next_pos = [next_box.x * (1 - next_info.enter_x) + next_box.right * next_info.enter_x, next_box.top];
         const vertical_half_way = (prev_box.bottom + next_box.top) / 2;
 
         console.log(prev_box.left, prev_box.right, prev_pos, next_pos)
 
-
+        // create the connecting path and add it to the DOM
         const connector = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        connector.setAttribute('d', `M ${prev_pos.join(',')} L ${next_pos.join(',')}`);    // straight line
+        //connector.setAttribute('d', `M ${prev_pos.join(',')} L ${next_pos.join(',')}`);    // straight line
         connector.setAttribute('d', `M ${prev_pos.join(',')} C ${prev_pos[0]},${vertical_half_way} ${next_pos[0]},${vertical_half_way} ${next_pos.join(',')}`);    // straight line
         connector.setAttribute('stroke-width', 5);
         connector.setAttribute('stroke', 'white');
 
+        const len = connector.getTotalLength();
+        connector.style.strokeDasharray = len;
+        connector.style.strokeDashoffset = len;
+
         connections.appendChild(connector);
+
+        console.log(prev_box.bottom)
+
+        // create tween and register scene
+        new ScrollMagic.Scene({
+            offset: prev_box.bottom,
+            duration: next_box.top - prev_box.bottom,
+            tweenChanges: true,
+        })
+            .setTween(new TweenMax.to(connector, 0.1, { strokeDashoffset: 0, ease: Cubic.easeIn }))
+            .addIndicators()
+            .addTo(controller)
     }
     bg.appendChild(connections);
 }
