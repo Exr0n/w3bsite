@@ -103,6 +103,7 @@ function make_connecting_lines(controller) {
         connector.setAttribute('d', `M ${prev_pos.join(',')} C ${prev_pos[0]},${vertical_half_way} ${next_pos[0]},${vertical_half_way} ${next_pos.join(',')}`);    // straight line
         connector.setAttribute('stroke-width', 5);
         connector.setAttribute('stroke', 'white');
+        connector.setAttribute('fill', 'none');
 
         const len = connector.getTotalLength();
         connector.style.strokeDasharray = len;
@@ -114,7 +115,7 @@ function make_connecting_lines(controller) {
 
         // create tween and register scene
         new ScrollMagic.Scene({
-            offset: prev_box.bottom,
+            offset: prev_box.bottom - document.documentElement.clientHeight*0.55,
             duration: next_box.top - prev_box.bottom,
             tweenChanges: true,
         })
