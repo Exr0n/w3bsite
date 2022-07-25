@@ -60,6 +60,25 @@ function budget_react_inital_render() {
     container.innerHTML = inner_html;
 }
 
+function setup_bg_canvas() {
+    const canvas = document.getElementById('bg-canvas');
+
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = "green";
+    ctx.fillRect(1, 1, 100, 100)
+    console.log(canvas)
+
+    // ensure canvas always take up the full background
+    window.addEventListener('resize', (ev) => {
+        console.log(document.documentElement.scrollHeight, document.documentElement.scrollWidth)
+        //console.log(ev.target.clientHeight, ev.target.innerHeight)
+        //console.log('resizing canvas', obj.innerWidth, obj.innerHeight)
+        //canvas.viewBox = `0 0 ${document.documentElement.scrollHeight} ${document.documentElement.scrollWidth}`;
+        canvas.width = document.documentElement.scrollWidth;
+        canvas.height = document.documentElement.scrollHeight;
+    });
+}
+
 function setup_scrollmagic() {
     const controller = new ScrollMagic.Controller();
 
@@ -101,6 +120,7 @@ function setup_scrollmagic() {
 
 function main() {
     budget_react_inital_render();
+    setup_bg_canvas();
     setup_scrollmagic();
 }
 

@@ -592,6 +592,10 @@ video {
   }
 }
 
+.fixed {
+  position: fixed;
+}
+
 .m-auto {
   margin: auto;
 }
@@ -626,6 +630,10 @@ video {
 
 .max-w-6xl {
   max-width: 72rem;
+}
+
+.resize {
+  resize: both;
 }
 
 .flex-col {
