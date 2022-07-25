@@ -1255,23 +1255,43 @@ function make_icon_lines_on_bg(controller) {
     bg.appendChild(doc_frag);
 }
 function make_connecting_lines(controller) {
-    const path_els = get_path_els();
     const bg = document.getElementById('bg-svg');
-
-    document.addEventListener('click', ev => console.log('click', ev.clientX, ev.clientY))
+    const icon_paths = Array.from(document.querySelectorAll('.flattened-icon-path'));
 
     const connections = document.createDocumentFragment();
-    for (let i=1; i<path_els.length; i++) {
-        // calculate the endpoints of the lines
-        const prev_box = path_els[i-1].parentElement.getBoundingClientRect();
-        const next_box = path_els[i].parentElement.getBoundingClientRect();
-        const prev_info = svg_infos[i-1];
-        const next_info = svg_infos[i];
-        const prev_pos = [prev_box.x * (1 - prev_info.leave_x) + prev_box.right * prev_info.leave_x, prev_box.bottom];
-        const next_pos = [next_box.x * (1 - next_info.enter_x) + next_box.right * next_info.enter_x, next_box.top];
-        const vertical_half_way = (prev_box.bottom + next_box.top) / 2;
+    console.log(icon_paths);
+    for (let i=1; i<icon_paths.length; i++) {
+        const prev_path = icon_paths[i-1];
+        const next_path = icon_paths[i];
 
-        console.log('creating connector from', prev_pos, 'to', next_pos)
+        const prev_pos = (() => { const p = prev_path.getPointAtLength(prev_path.getTotalLength()); return [p.x, p.y]; })();    // no operator.itemgetter :(
+        const next_pos = (() => { const p = next_path.getPointAtLength(0); return [p.x, p.y]; })();
+        console.log(prev_pos, next_pos)
+        const vertical_half_way = (prev_pos[1] + next_pos[1]) / 2;
+    //}
+
+
+
+
+
+
+
+    //const path_els = get_path_els();
+    //const bg = document.getElementById('bg-svg');
+    //
+    //document.addEventListener('click', ev => console.log('click', ev.clientX, ev.clientY))
+    //
+    //for (let i=1; i<path_els.length; i++) {
+    //    // calculate the endpoints of the lines
+    //    const prev_box = path_els[i-1].parentElement.getBoundingClientRect();
+    //    const next_box = path_els[i].parentElement.getBoundingClientRect();
+    //    const prev_info = svg_infos[i-1];
+    //    const next_info = svg_infos[i];
+    //    const prev_pos = [prev_box.x * (1 - prev_info.leave_x) + prev_box.right * prev_info.leave_x, prev_box.bottom];
+    //    const next_pos = [next_box.x * (1 - next_info.enter_x) + next_box.right * next_info.enter_x, next_box.top];
+    //    const vertical_half_way = (prev_box.bottom + next_box.top) / 2;
+    //
+    //    console.log('creating connector from', prev_pos, 'to', next_pos)
 
         // create the connecting path and add it to the DOM
         const connector = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -1288,12 +1308,12 @@ function make_connecting_lines(controller) {
 
         connections.appendChild(connector);
 
-        console.log(prev_box.bottom)
+        //console.log(prev_box.bottom)
 
         // create tween and register scene
         new ScrollMagic.Scene({
-            offset: prev_box.bottom - GET_SCROLLMAGIC_OFFSET_DELAY(),
-            duration: next_box.top - prev_box.bottom,
+            offset: prev_pos[1] - GET_SCROLLMAGIC_OFFSET_DELAY(),
+            duration: next_pos[1] - prev_pos[1],
             tweenChanges: true,
         })
             .setTween(new TweenMax.to(connector, 0.1, { strokeDashoffset: 0, ease: Cubic.easeIn }))
