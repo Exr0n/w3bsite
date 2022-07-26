@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<!--
+This website takes a JSON of sections and SVG paths, and generates the website by placing each element using a custom janky functional DOM concatenator. Then, it finds all the <path /> elements in the SVGs it placed and copies it into DOM coordinate space and onto one big background SVG. Then, the connecting <path/>s are programatically generated and everything is set up with scrollmagic scenes.
+
+How did we get here?
+
+I was sick and didn't want to write college apps or work on actual work, so I decided to make something that looked cool. This was inspired by the scrolly-story infographicy nature of https://neuralink.com/science/ and the clean, unobtrusive scrollmagic of https://www.jetbrains.com/fleet/ (shared by TheEnquirer).
+
+Don't worry, I usually use react. However, during the first 1am programming session, I couldn't figure out how to make the react version of scrollmagic work, and didn't want to figure out how to convert from the examples to the react library syntax. So, I decided to use normal JS. I avoid jQuery because someone told me it was bad once, so this ended up just being pure, vanilla javascript. 
+
+However, I also like my websites being parameterized (obsessed with generality and all that) (see jklsnt.com source) so I ended up rolling a scuffed version of react which essentially to just functionally generate the contents of the website. Pretty bad and hardly featureful but at least you can comment blocks out normally. 
+
+I tried to set up module imports and webpack at least twice, but it was doing something strange (that I don't remember) so I just ended up using CDN imports. That should probably change for production, because CDNs are slow and cringe. 
+
+I should also probably use webpack or at least some kind of build step just so that the programatically generated contents can use tailwindcss (because theres no tailwind-custombudgetreact integration). But that seemed hard so I just ended up using inline css with the budget react and tailwind in this here HTML file. 
+
+I also wanted to add a gif in the background on hover, variable stroke width and an animated gradient, and probably more fancy features. Realistically however, I need to get back to working on real stuff, and I'm pretty happy with how this turned out.
+
+Hope you enjoyed it! Especially given that you took the time to see how it was implemented. 
+-->
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Albert (Exr0n)</title>
+        <link rel="shortcut icon" type="image/png" href="/favicon-192.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="/index.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/animation.gsap.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/debug.addIndicators.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dompurify@2.3.10/dist/purify.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.18/marked.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/nanoid/4.0.0/index.browser.js" integrity="sha512-YFaQHp+hWX9CMeIMngYK23kSIWaYlgsswmzmIdEw/HcK/5NLhXY2MbT0wQB5DnUzjW1uky4quIHtksukqZGkMw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Nunito:wght@400;600;800&family=PT+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/path-data-polyfill@1.0.3/path-data-polyfill.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body>
+        <main class="z-0 select-none bg-dark text-primary">
+            <svg id="bg-svg" class="absolute top-0 left-0 pointer-events-none" style="z-index: 10;"></svg>
+            <div id="header-spacer" class="z-20 flex flex-col justify-end p-3 p-24 text-7xl space-y-6" style="height: 100vh;">
+                <div class="w-full font-black text-7xl sm-fade-in" style="font-family: 'Nunito', sans-serif;">Howdy, I'm <span class="text-accent">Albert</span></div>
+                <div class="z-50 w-full text-2xl sm-fade-in space-x-6">
+                    <a href="http://exr0n.com"><i class="fa-solid fa-lg fa-globe"></i></a>
+                    <a href="https://github.com/Exr0n"><i class="fa-brands fa-lg fa-github"></i></a>
+                    <a href="https://www.linkedin.com/"><i class="fa-brands fa-lg fa-linkedin"></i></a>
+                    <a href="mailto:mail@exr0n.com"><i class="fa-solid fa-lg fa-envelope"></i></a>
+                    <a href="https://jklsnt.com"><i class="fa-solid fa-lg fa-user-group"></i></a>
+                    <!-- | with ❤️ and 🥗 by Exr0n -->
+                </div>
+            </div>
+            <div id="line-main" class="z-20 max-w-6xl m-auto">
+                building the site <em>just for you...</em>
+            </div>
+            <div class="flex items-center" style="height: 120vh;">
+                <div class="flex-col w-3/5 m-auto" style="font-family: 'Nunito', sans-serif">
+                    <div class="flex w-full"><div class="z-40 flex flex-col justify-end w-2/3 h-24 text-2xl sm-fade-in">
+                            <div>
+                            So thats me, partially—there's a little more to see.
+                            </div>
+                            <div>
+                            If you'd like, <a style="z-index: 40;" href="http://wilderness.exr0n.com">explore the wilderness.</a>
+                            </div>
+                    </div><div class="w-1/3"></div></div>
+                    <div id="footer-line-spacer" class="h-6"></div>
+                    <div class="z-40 h-24 text-2xl">
+                        <div class="sm-fade-in">
+                        Have a thought or think we might get along? I'd love to hear from you!
+                        </div>
+                        <div class="z-50 flex justify-center w-full my-4 text-lg opacity-0 sm-fade-in space-x-6">
+                            <a href="http://exr0n.com"><i class="fa-solid fa-lg fa-globe"></i></a>
+                            <a href="https://github.com/Exr0n"><i class="fa-brands fa-lg fa-github"></i></a>
+                            <a href="https://www.linkedin.com/"><i class="fa-brands fa-lg fa-linkedin"></i></a>
+                            <a href="mailto:mail@exr0n.com"><i class="fa-solid fa-lg fa-envelope"></i></a>
+                            <a href="https://jklsnt.com"><i class="fa-solid fa-lg fa-user-group"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- <script src="/index.mjs" type="module"></script>-->
+        <script src="/bundle.js"></script>
+    </body>
+</html>
+
