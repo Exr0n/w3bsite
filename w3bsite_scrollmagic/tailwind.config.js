@@ -4,8 +4,8 @@ module.exports = {
         colors: {
             transparent: 'transparent',
             current: 'currentColor',
-            'dark': '#121019',
-            'primary': '#a5d2ff',
+            'dark': '#101010',
+            'primary': '#f0f0ff',
             'accent': '#326ccc',
         },
         extend: {},
