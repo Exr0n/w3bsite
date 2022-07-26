@@ -641,8 +641,16 @@ video {
   margin-bottom: 1rem;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
+}
+
+.contents {
+  display: contents;
 }
 
 .h-24 {
