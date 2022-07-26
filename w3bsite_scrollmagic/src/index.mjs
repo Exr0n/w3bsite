@@ -429,7 +429,7 @@ function main() {
 
     // scroll for them if they don't do anything
     (() => {
-        const timeout = setTimeout(() => { window.scrollTo({ top: GET_SCROLLMAGIC_OFFSET_DELAY() * 0.6, left: 0, behavior: 'smooth' }); }, 2 * 1000);
+        const timeout = setTimeout(() => { window.scrollTo({ top: GET_SCROLLMAGIC_OFFSET_DELAY() * 0.6, left: 0, behavior: 'smooth' }); }, 1 * 1000);
         document.addEventListener('scroll', () => { clearTimeout(timeout); }, { once: true });
     })();
 }

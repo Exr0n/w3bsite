@@ -1,5 +1,8 @@
 {
     "private": true,
+    "scripts": {
+        "deploy": "tailwindcss -m -i src/tailwind.css -o public/index.css && webpack build && gh-pages -d public"
+    },
     "dependencies": {
         "gasp": "^0.0.2",
         "marked": "^4.0.18",
