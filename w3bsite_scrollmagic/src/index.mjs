@@ -41,16 +41,97 @@ const sections = {
             'description': "I spent summer 2022 working with [the MICS lab](https://mics.caltech.edu/) on optimizing FENet (a light weight convolutional model trained to extract rich features from implanted electrodes) for hardware implementation. Practically, this involved sweeping over hyperparameters and running experiments to see how model architecture and quantization affected regression performance.",
             'iconLeft': true,
             'justify': 'center',
-            'bg_images': [
+            'flashbacks': [
                 {
-                    'srcs': ['blob:https://wandb.ai/403d2b69-1e0d-4e35-ac32-95092fa3f6f6', 'blob:https://wandb.ai/5ef48c3a-ac86-4d02-bed7-ebd9d33d3fef', 'blob:https://wandb.ai/a044d959-a765-4e1c-8f2c-914c3aa54221', 'blob:https://wandb.ai/16a74d84-904b-4faa-a9a5-f299b20bca70'],
+                    'srcs': [
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_0_e95c2f476b2c3b444704.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_100_45b3583471cefe23e81a.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_10_20f73df5ddf304639563.png ",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_110_9a0bd309ea0e027c2d2e.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_120_9109e5d3f34b2e7b9819.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_130_3c207523997cf109446d.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_140_b5b31357fc59116dfda1.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_150_1852dd46f74c55bc5955.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_160_2e98fcf50a7deeb4a505.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_170_187e8e10501944b3291a.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_180_af44ff8e54f9ce72d294.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_190_0dc4ab2807a1dec625d6.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_200_a3a2cc98d9d32b31ec6e.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_20_8f8d13cca256bc676354.png ",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_210_41beabec7d6bd51db4b9.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_220_92a4b2103e6044a16657.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_230_79e1bf4c20dd215178a6.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_240_5092f606b157ee293a3c.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_250_059b3f1bb6a4c767ffe7.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_260_5faf5526b95b9c3a29b6.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_270_fc9f5a9bccc7f7bee2bf.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_280_73d83a6bdbaa8ecc6c4b.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_290_4d1c89e8cb7e0781063b.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_300_aa361c5c3f66d57a96cf.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_30_a9442aee0914ff0202c8.png ",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_310_0e453d1fadcbf524a873.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_320_cdfeba9354ee95438f3e.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_330_47b030d6f1634790d7f6.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_340_a729197801008564ed70.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_350_1f5ddcf8544dd25b2899.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_360_88a6f43fcc132be2cf05.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_370_3f2345b9ad55a664a48f.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_380_85260d17b90e9d339299.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_390_d93d1026f7d91726ce61.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_400_6748e239fa930066d0eb.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_40_86f80554d0214afd5c78.png ",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_410_0f641fec38e63fc711da.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_420_9b2d9e5e9ab7943a807b.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_430_1f301260fa35eaa56699.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_440_10e141d0b3c62e58ac89.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_450_56c07025a0cc040dfdcd.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_460_c898678620f994c5d70e.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_470_7caf46f0250de7e25f8e.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_480_a9168194f84072ee179c.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_490_f64de4f92ec310bfefe1.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_500_f860efa5dd1218470ce2.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_50_693b21eb3ad1df5e57ab.png ",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_510_24a2784a839d819f7032.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_520_e8b9897bb4101b7dd214.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_530_8062a777967205167b45.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_540_314b7fcad06da8d5771c.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_550_f3a570cb741681b783e9.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_560_55aca4e9b25d99ab857c.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_570_6ab3eb1f7b5046113c17.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_580_1566c1b8cb8018610f9f.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_590_61c87f7642cb5228cf67.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_600_e367d26a6b39acec95dd.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_60_5b6dd10ff34ee53cfc65.png ",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_610_4bb6e9334fccda2be13c.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_620_44125eabde563f951d72.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_630_9383582b15cf3c33c0e8.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_640_5c0cfa6deba604182d7d.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_650_9a65e41fac44da99957d.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_660_fd877530213ec59916c5.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_670_bd1b030cbb8d13f690c5.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_680_63c00028ceffb94ce240.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_690_23decbab19baf1295e9f.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_700_18d5cbcaaa9637b6510f.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_70_1b2edfce0ad991a7a606.png ",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_710_2401e175ab9a0dbeb4a3.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_720_25b19c85943dea1a4e35.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_730_8363d379088d1ff7eefb.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_740_93ad49c8b8cf5450ee54.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_750_ef45a481bf40d8d9e93f.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_760_7a5790ebf5cc2f9b8d59.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_770_136448d85865c50e9fbc.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_780_242ec5779ecfbe47bb49.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_790_12d7be2a53ad23ecae03.png",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_80_17a6bda80c8c83ab0069.png ",
+                "/flashback_images/media/images/eval/timely/decoder-preds-chart_90_4f722626f03213959d9c.png ",
+                    ],
                     'style': {
                         'width': '40vw',
-                        'left': '20vw',
-                        'bottom': '10vh',
+                        'left': '0',
+                        'bottom': '-20vh',
                     }
                 }
-            ]
+            ],
             'icon': {
                 'max_width': '10rem',
                 'svg_el': ` <svg style="width: 100%;" viewBox="0 0 420 600" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -208,9 +289,9 @@ const ICON_TRIGGER_HOOK = 1.0;
 const BW = 0;   // border width
 
 
-function el(elem_name, inline_style, children, className=null) {
+function el(elem_name, inline_style, children, className=null, kwargs={}) {
     if (! Array.isArray(children)) children = [children];
-    return `<${elem_name}${className ? ' class=' + className : ''} style="${inline_style}">\n${children.join("\n")}\n</${elem_name}>`;
+    return `<${elem_name}${className ? ' class=' + className : ''} style="${inline_style}" ${Object.entries(kwargs).map(([k, v]) => k + '="' + v + '"').join(' ')}>\n${children.join("\n")}\n</${elem_name}>`;
 }
 
 function zip(...arr) {
@@ -227,7 +308,7 @@ function budget_react_inital_render() {
     const inner_html = el('div', null, 
         Object.entries(sections).map(([sec_title, items]) => el('div', `display: flex; flex-direction: column; padding-x: 2rem; border: ${BW}px solid purple;`, [
             el('div', 'opacity: 0; font-size: 4rem; font-weight: 800; z-index: 40;', [sec_title], 'sm-fade-in'),
-            ...Object.values(items).map(({title, description, icon, css, iconLeft, justify}) => el('div', `display: flex; align-items: center; min-height: 40vh; margin-bottom: 1em; ${css ?
+            ...Object.values(items).map(({title, description, icon, css, iconLeft, justify, flashbacks}) => el('div', `position: relative; display: flex; align-items: center; min-height: 40vh; margin-bottom: 1em; ${css ?
                     Object.entries(css).map(([k, v]) => k + ': ' + v).join('; ') : ''}`, [
                 el('div', `justify-content: ${justify ? justify : 'flex-begin'}; width: 100%; display: flex; z-index: 40; border: ${BW}px solid cyan`, possiblyReversed(iconLeft, [
                     el('div', `max-width: 65ch; display: flex; align-items: center; border: ${BW}px solid orange;`, [
@@ -245,6 +326,7 @@ function budget_react_inital_render() {
                     el('div', 'width: 5rem;'), // spacer
                     icon ? el('div', `min-width: 100px; display: flex; border: ${BW}px solid red; align-items: center; justify-content: center; ${icon.max_width? 'max-width: ' + icon.max_width : ''}`, [icon.svg_el]) : null,
                 ]), 'has-line-art'),
+                flashbacks ? flashbacks.map(({srcs, style}) => el('img', `position: absolute; opacity: 0.5; ${Object.entries(style).map(([k, v]) => k + ':' + v + ';').join(' ')}`, [], 'sm-flashback', { 'src': srcs[0] })) : ''
             ]))
         ]))
     );
@@ -439,6 +521,29 @@ function make_connecting_lines(controller) {
     bg.appendChild(connections);
 }
 
+function setup_scrollmagic_for_flashback_images(controller) {
+    const flashbacks = Array.from(document.getElementsByClassName('sm-flashback'));
+    const flash_infos = Array.from(Object.values(sections)).map(sec => sec.filter(p => p.hasOwnProperty('flashbacks')).map(p => p.flashbacks).flat()).flat();
+    console.assert(flashbacks.length == flash_infos.length);
+
+    zip(flashbacks, flash_infos).map(([el, info]) => {
+        const tweenState = { idx: 0 };  // https://scrollmagic.io/examples/expert/image_sequence.html
+        console.log(el, info)
+        return new ScrollMagic.Scene({
+            triggerElement: el.parentElement,
+            duration: el.parentElement.clientHeight,
+            tweenChanges: true,
+        })
+        .setTween(new TweenMax.to(tweenState, 0.1, {
+            idx: info.srcs.length-1,    // animate to the full length
+            roundProps: 'idx',          // round idx to nearest int
+            immediateRender: true,      // force re-render (is this a reflow? todo-optm)
+            ease: Linear.easeNone,
+            onUpdate: () => { el.setAttribute('src', info.srcs[tweenState.idx]) }
+        }))
+        .addTo(controller)
+    });
+}
 
 function setup_scrollmagic(controller) {
     const to_fade_in = Array.from(document.getElementsByClassName('sm-fade-in'));
@@ -469,6 +574,7 @@ function main() {
     const controller = new ScrollMagic.Controller();
     setup_scrollmagic(controller);
     setup_bg_svg(controller);
+    setup_scrollmagic_for_flashback_images(controller);
 
     // scroll for them if they don't do anything
     (() => {
