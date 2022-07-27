@@ -2,15 +2,15 @@ const sections = {
     "": [
         {
             'title': [
-                "I'm a high school student <br> and thinking enthusiast.", 
+                "I'm a high school student&nbsp; <br> and thinking enthusiast.", 
             ],
             'description': [
                 "I spend too much time pondering machine learning, communication, brain-machine interfaces, and metacognition.",
                 "Let me tell you a bit about what I get up to...",
             ],
             'css': {
-                'height': '100vh',
-                'font-family': "'Nunito', sans-serif;"
+                'min-height': '100vh',
+                'font-family': "'Nunito', sans-serif"
             },
             'icon': {
                 'max_width': '23rem',
@@ -24,8 +24,9 @@ const sections = {
     'Education': [
         {
             'title': ["The Nueva School", "2017 - 2023"],
-            'description': "I'm a rising senior at [the Nueva school](http://nuevaschool.org/) in San Mateo, California. At school, I'm a member of [FRC team 4904 Bot Provoking](https://botprovoking.org/) and a Mavericks Admissions Ambassador.",
+            'description': "I'm a rising senior at [the Nueva school](http://nuevaschool.org/) in the SF Bay Area. At school, I'm a member of [FRC team 4904 Bot Provoking](https://botprovoking.org/) and a Mavericks Admissions Ambassador.",
             'iconLeft': true,
+            'css': { 'font-family': "'Liberation Sans', sans-serif" },
             'icon': {
                 'max_width': '12rem',
                 'svg_el': `<svg style="width: 100%;" viewBox="1 0 1 1.2" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +38,7 @@ const sections = {
     'Experience': [
         {
             'title': ["Mixed-mode Integrated Circuits Lab", "Caltech, summer 2022"],
-            'description': "I'm a rising senior at [the Nueva school](http://nuevaschool.org/) in San Mateo, California. At school, I'm a member of [FRC team 4904 Bot Provoking](https://botprovoking.org/) and a Mavericks Admissions Ambassador.",
+            'description': "I spent summer 2022 working with [the MICS lab](https://mics.caltech.edu/) on optimizing FENet (a light weight convolutional model trained to extract rich features from implanted electrodes) for hardware implementation. Practically, this involved sweeping over hyperparameters and running experiments to see how model architecture and quantization affected regression performance.",
             'iconLeft': true,
             'icon': {
                 'max_width': '10rem',
@@ -48,10 +49,10 @@ const sections = {
         },
         {
             'title': ["Efficient and Intelligent Computing Lab", "Rice, summer 2021"],
-            'description': "I'm a rising senior at [the Nueva school](http://nuevaschool.org/) in San Mateo, California. At school, I'm a member of [FRC team 4904 Bot Provoking](https://botprovoking.org/) and a Mavericks Admissions Ambassador.",
+            'description': "I spent part of summer 2019 working with [the EIC lab](https://eiclab.net/) as a member of the [X-Camp academy](https://x-camp.academy/#/) internship connector pilot. We implemented GPT-2 in Vivado HLS as a baseline for future models and a jumping-off point for future projects. I ended up stepping into a role of organization and coordination—figuring out who was best suited for each job and creating a concrete roadmap to communicate our efforts.",
             'iconLeft': true,
             'css': {
-                height: '100vh',
+                'min-height': '100vh',
             },
             'icon': {
                 'max_width': '10rem',
@@ -76,13 +77,24 @@ const sections = {
 //    ],
     'Hobbies': [
         {
+            'title': "Interactive Visualizations + Soydevvery",
+            'description': "Visualizations that project data into a tangible, visual space to build intuition or point out something cool; web demos that look pretty. These one-off projects have included [a US map of population, politics, and walkability](https://urbanmap.exr0n.com), [dots that undulate like the ocean](https://meshwave.exr0n.com), and [a gimicky word vector arithmatic explorer](https://corsaur.us).",
+            'icon': {
+                'max_width': '14rem',   
+                'svg_el': `<svg style="width: 100%;" viewBox="0 0 455 457" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d=" M 417.0,0.5 L 417.0,274.0 L 450.0,306.0 L 378.0,306.0 L 425.5,394.0 L 381.0,419.0 L 330.0,326.5 L 278.5,373.5 L 278.5,136.0 L 372.5,231.5 L 372.5,41.5 L 2.0,41.5 L 2.0,400.0 L 75.5,400.0 L 75.5,261.5 L 130.5,261.5 L 130.5,400.0 L 184.5,400.0 L 184.5,185.0 L 240.5,185.0 L 240.5,456.5 " stroke="#E42929" stroke-width="4"/>
+</svg>
+`
+            },
+        },
+        {
             'title': "Explanatory Diagrams",
-            'description': "Infographics that tell stories and share knowledge rather than providing quick stats. Spatial organizations of knowledge that you can get lost in. There's no one place to start, but once you've read everything, you'll have learned something. You can see some that I've made [here]",
+            'description': "Infographics that tell stories and share knowledge rather than providing quick stats. Spatial organizations of knowledge that you can get lost in. There's no one place to start, but once you've read everything, you'll have learned something. You can see some that I've made [here](https://wilderness.exr0n.com/wilderness/infographics)",
             'css': {
-                height: '70vh',
+                'min-height': '80vh',
             },
             'icon': {
-                'max_width': '10rem',
+                'max_width': '14rem',
                 'svg_el': `<svg style="width: 100%;" viewBox="0 0 258 443" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M254.868 0V156.5C241.368 75.0001 162.23 40.0627 99.3681 53.0001C39.1215 65.3993 -10.6574 134.877 4.86804 200C19.8765 262.954 74.8679 308 143.868 302L126.368 162.5H254.868C256.868 184.333 256.3 225.5 229.5 257.5C202.7 289.5 168.5 298.333 149 302V329H4.86804V364H254.868V378H4.86804V393.5H254.868V442.5" stroke="#9A2828" stroke-width="3"/>
 </svg>
@@ -93,11 +105,12 @@ const sections = {
             'title': "Timelapse Photography",
             'description': "I like searching for new patterns through the perspective shift of changing your time scales. Sitting still and watching as things happen feels almost like a stoic or zen practice. You can see my time lapses [here](https://www.google.com/search?q=coming+eventually).",
             'iconLeft': true,
+            'justify': 'flex-end',
             'css': {
-                height: '100vh',
+                'min-height': '100vh',
             },
             'icon': {
-                'max_width': '10rem',
+                'max_width': '14rem',
                 'svg_el': `<svg style="width: 100%;" viewBox="0 0 510 776" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M469.5 0V103C469.5 92 456.2 74.4 445 74L330 54L353 48V27L286.5 15L244 21.5L309.5 34.5V57.5L319 56C265.5 46.8333 155.3 27.9 142.5 25.5C126.5 22.5 117.5 31 117 42C116.6 50.8 116.833 78.6667 117 91.5C127.8 95.1 130.167 103 130 106.5C130 119.833 130 148.5 130 156.5C130 164.5 121.333 168.167 117 169C117 178 117 199.2 117 212C117 228 123.5 234 133 237C140.6 239.4 211.833 255.667 246.5 263.5L233.5 262.5V284L302.5 302.5V281.5H321.5L348.5 287V294.5L304.5 302.5V337C319.833 341.333 350.5 360.2 350.5 401C350.5 418.2 346.167 426.833 344 429L508.5 592L494.5 597.5L334.5 450C331.7 459.2 324.667 462.167 321.5 462.5L409 754.5L379 764L290 469C275.6 476.6 254.333 467.833 245.5 462.5L1 645V775.5" stroke="#9A2828"/>
 </svg>
@@ -121,9 +134,10 @@ const sections = {
             'title': "Self-administered a WorksiteLabs PCR Covid Test in 23 seconds",
             'description': "I trained for literally months. When I started, placing the name label on the tube and opening the package with the swab slowed me down the most. Stabbing the back end of the swab through the paper backing and placing the name label on the tube while the cap is off when putting the swab inside made the final speed possible. Unscrewing the tube with one hand while swabbing with the other can save an additional second or so, but requires finger strength and practice.",
             'css': {
-                height: '60vh',
+                'min-height': '60vh',
             },
             'iconLeft': true,
+            'justify': 'flex-end',
             'icon': {
                 'max_width': '10rem',
                 'svg_el': `<svg style="width: 100%;" viewBox="0 0 361 409" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -136,7 +150,7 @@ const sections = {
             'title': "Slept through half of my AP CS test",
             'description': "For some reason I was particularly tired that morning, so about one quarter of the way through the free-response question section, I decided to just take a nap. I didn't know if I was allowed to get my jacket out of my backpack, so I slept on my arms. Near the end of the test, my arms fell asleep and the tingling woke me up.",
             'css': {
-                height: '80vh',
+                'min-height': '80vh',
             },
             'icon': {
                 'max_width': '10rem',
@@ -164,11 +178,13 @@ const sections = {
 const svg_infos = Array.from(Object.values(sections)).map(sec => sec.filter(p => p.hasOwnProperty('icon')).map(p => p.icon)).flat()
 const get_path_els = () => Array.from(document.querySelectorAll('.has-line-art path'));
 
-const GET_SCROLLMAGIC_OFFSET_DELAY = () => document.documentElement.clientHeight * 0.55;
+//const GET_SCROLLMAGIC_OFFSET_DELAY = () => document.documentElement.clientHeight * 0.55;
+const GET_SCROLLMAGIC_OFFSET_DELAY = () => document.documentElement.clientHeight * 1.00 * TRIGGER_HOOK;
 const STROKE_WIDTH = 5;
 const LINE_COLOR = '#326ccc'; // make it a gradient that fills section-wise from the top eventually
 const PRIMARY_COLOR = '#f0f0ff';
-const TRIGGER_HOOK = 0.7;
+const TRIGGER_HOOK = 0.5;
+const ICON_TRIGGER_HOOK = 1.0;
 const BW = 0;   // border width
 
 
@@ -189,12 +205,13 @@ function possiblyReversed(do_reverse, arr) {
 
 function budget_react_inital_render() {
     const inner_html = el('div', null, 
-        Object.entries(sections).map(([sec_title, items]) => el('div', `display: flex; flex-direction: column; padding-x: 2rem;`, [
+        Object.entries(sections).map(([sec_title, items]) => el('div', `display: flex; flex-direction: column; padding-x: 2rem; border: ${BW}px solid purple;`, [
             el('div', 'max-width: 100ch; opacity: 0; font-size: 4rem; font-weight: 800; z-index: 40;', [sec_title], 'sm-fade-in'),
-            ...Object.values(items).map(({title, description, icon, css, iconLeft}) => el('div', `display: flex; align-items: start; height: 40vh; margin-bottom: 1em; ${css ?
+            ...Object.values(items).map(({title, description, icon, css, iconLeft, justify}) => el('div', `display: flex; align-items: start; min-height: 40vh; margin-bottom: 1em; ${css ?
                     Object.entries(css).map(([k, v]) => k + ': ' + v).join('; ') : ''}`, [
-                el('div', 'justify-content: flex-begin; width: 100%; display: flex; z-index: 40;', possiblyReversed(iconLeft, [
+                el('div', `justify-content: ${justify ? justify : 'flex-begin'}; width: 100%; display: flex; z-index: 40; border: ${BW}px solid cyan`, possiblyReversed(iconLeft, [
                     el('div', `max-width: 65ch; padding: 1em; display: flex; align-items: center; border: ${BW}px solid orange;`, [
+                        //el('div', `border: ${BW}px solid green; text-align: ${iconLeft? 'left' : 'right'};`, [
                         el('div', `border: ${BW}px solid green;`, [
                             el('div', 'font-size: 2rem; font-weight: 600; margin-bottom: 1em;',
                                 Array.isArray(title) ? title.map(t => el('div', null, [t], 'sm-fade-in')) : [el('span', null, [title], 'sm-fade-in')]
@@ -281,7 +298,7 @@ function make_icon_lines_on_bg(controller) {
             tweenChanges: true,
         })
             .setTween(new TweenMax.to(new_path, 0.1, { strokeDashoffset: 0, ease: Cubic.easeOut }))
-            .triggerHook(TRIGGER_HOOK)
+            .triggerHook(ICON_TRIGGER_HOOK)
             .addTo(controller)
     }
     bg.appendChild(doc_frag);
@@ -429,7 +446,7 @@ function main() {
 
     // scroll for them if they don't do anything
     (() => {
-        const timeout = setTimeout(() => { window.scrollTo({ top: GET_SCROLLMAGIC_OFFSET_DELAY() * 0.6, left: 0, behavior: 'smooth' }); }, 1 * 1000);
+        const timeout = setTimeout(() => { window.scrollTo({ top: document.documentElement.clientHeight * 0.7, left: 0, behavior: 'smooth' }); }, 1 * 1000);
         document.addEventListener('scroll', () => { clearTimeout(timeout); }, { once: true });
     })();
 }
