@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.sm-fade-in {
-    opacity: 0;
-}
-
 a {
     text-decoration: #326ccc underline;
 }
