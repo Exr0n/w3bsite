@@ -286,6 +286,7 @@ L752.944 324.493C757.939 321.964 758.131 326.315 760 348C761.509 365.5 744.5 369
     ]
 }
 
+import { List } from 'immutable';
 
 const svg_infos = Array.from(Object.values(sections)).map(sec => sec.filter(p => p.hasOwnProperty('icon')).map(p => p.icon)).flat()
 const get_path_els = () => Array.from(document.querySelectorAll('.has-line-art path'));
@@ -591,25 +592,33 @@ function setup_scrollmagic(controller) {
         .triggerHook(TRIGGER_HOOK)
         .addTo(controller)
     );
-    
-    //// the 4/5ths fade ins (icons that then have an onhover)
-    //Array.from(document.getElementsByClassName('sm-fade-in-partial')).map(el => new ScrollMagic.Scene({
-    //    triggerElement: el,
-    //    duration: el.clientHeight,
-    //    tweenChanges: true,
-    //})
-    //    .setTween(new TweenMax.to(el, 0.1, { opacity: 0.5, ease: Linear.linear }))
-    //    .triggerHook(TRIGGER_HOOK)
-    //    .addTo(controller)
-    //);
+}
+
+async function preload_flashback_images() {
+    const urls = Array.from(Object.values(sections))
+        .map(sec => sec.filter(p => p.hasOwnProperty('flashbacks')).map(p => p.flashbacks).flat()).flat()
+        .map(info => info.srcs).flat()  // all the image urls
+        //.map(url => { const img = new Image(); img.src = url; return img; });
+
+    async function recursive_sequential_loader(urls, idx) {
+        return new Promise((res, rej) => {
+            const img = new Image();
+            img.onload = async () => { res(idx+1 == urls.length ? List([img]) : (await recursive_sequential_loader(urls, idx+1)).push(img)); };
+            img.src = urls[idx];
+        });
+    }
+    return await recursive_sequential_loader(urls, 0);
 }
 
 function main() {
+    const images = preload_flashback_images();
     budget_react_inital_render();
     const controller = new ScrollMagic.Controller();
     setup_scrollmagic(controller);
     setup_bg_svg(controller);
     setup_scrollmagic_for_flashback_images(controller);
+
+    images.then((imgs) => { console.log("loaded", imgs.size, "images sequentially") });
 
     // scroll for them if they don't do anything
     (() => {

@@ -5,6 +5,7 @@
     },
     "dependencies": {
         "gasp": "^0.0.2",
+        "immutable": "^4.1.0",
         "marked": "^4.0.18",
         "nanoid": "^4.0.0",
         "path-data-polyfill": "^1.0.3",
