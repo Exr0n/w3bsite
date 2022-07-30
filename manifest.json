@@ -1,0 +1,27 @@
+{
+    "short_name": "Albert",
+    "name": "Albert (Exr0n)",
+    "icons": [
+        {
+            "src": "logo32.png",
+            "type": "image/png",
+            "sizes": "32x32"
+        },
+        {
+            "src": "logo128.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "logo192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#326ccc",
+    "background_color": "#101010"
+}
+
+
