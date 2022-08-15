@@ -3,5 +3,11 @@
 @tailwind utilities;
 
 a {
-    text-decoration: #326ccc underline;
+    color: #5390f5;
+    font-weight: bold;
+}
+
+a i {
+    color: #f0f0ff;
+    font-weight: normal;
 }

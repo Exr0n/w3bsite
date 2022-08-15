@@ -121,7 +121,7 @@ const sections = {
         },
         {
             'title': "Explanatory Diagrams",
-            'description': "Infographics that tell stories and share knowledge rather than providing quick stats. Spatial organizations of knowledge that you can get lost in. There's no one place to start, but once you've read everything, you'll have learned something. You can see some that I've made [here](https://wilderness.exr0n.com/wilderness/infographics)",
+            'description': "Infographics that tell stories and share knowledge rather than providing quick stats. Spatial organizations of knowledge that you can get lost in. There's no one place to start, but once you've read everything, you'll have learned something. Topics include the [CHRM2 neurotransmitter receptor protein](https://wilderness.exr0n.com/wilderness/infographics/19bioCHRM2ProtienStory.png) and [ion channels that help propogate neural action potentials](https://wilderness.exr0n.com/wilderness/infographics/20bio101VoltageGatedSodiumChannels.png). Here's [the full list](https://wilderness.exr0n.com/wilderness/infographics).",
             'icon': {
                 'max_width': '14rem',
                 'svg_el': `<svg style="width: 100%;" viewBox="0 0 258 443" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -461,17 +461,9 @@ function make_icon_lines_on_bg(controller) {
     // create footer line
     (() => {
         const bbox = document.getElementById('footer-line-spacer').getBoundingClientRect();
-        //const footer_y_pos = (() => {
-        //    const airstrike_target = document.getElementById('footer-line-spacer');
-        //    const bbox = airstrike_target.getBoundingClientRect();
-        //    return window.scrollY + (bbox.y + bbox.bottom)/2;
-        //})();
         const prev_pos = [window.scrollX + bbox.right, window.scrollY + document.getElementById('footer-line-spacer').parentElement.getBoundingClientRect().top];
         const next_pos = [window.scrollX + bbox.left,  window.scrollY + (bbox.bottom + bbox.top) / 2]
-        //const prev_pos = (() => { const p = paths_to_convert[paths_to_convert.length-1].getPointAtLength(paths_to_convert[paths_to_convert.length-1].getTotalLength()); return [p.x, p.y]; })();
 
-        document.addEventListener('click', e => console.log(e.pageX, e.pageY));
-        console.log(prev_pos, next_pos)
 
         const init_thread = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         init_thread.setAttribute('d', `M ${prev_pos.join(',')} L ${prev_pos[0]} ${next_pos[1]} L ${next_pos.join(',')}`);    // bezier
@@ -623,8 +615,13 @@ function main() {
 
     images.then((imgs) => { console.log("loaded", imgs.size, "images sequentially") });
 
-    // scroll for them if they don't do anything
     (() => {
+        // scroll to the place where they left off
+        const start_scrollpos = localStorage.getItem('leave_scroll_pos')
+            .split(',').map(parseFloat) || [0, 0];
+        window.scrollTo(...start_scrollpos);
+
+        // scroll for them if they don't do anything
         const timeout = setTimeout(() => {
             const pos = GET_SCROLLMAGIC_OFFSET_DELAY();
             if (window.scrollY < pos)
@@ -636,6 +633,7 @@ function main() {
 
 document.addEventListener('DOMContentLoaded', main);
 window.onbeforeunload = function () {
+    localStorage.setItem('leave_scroll_pos', [ window.scrollX, window.scrollY ]);
     window.scrollTo(0, 0);
 }
 
