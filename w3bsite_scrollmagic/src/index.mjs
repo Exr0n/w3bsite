@@ -2,7 +2,7 @@ const sections = {
     "": [
         {
             'title': [
-                "I'm a high school student&nbsp; <br> and thinking enthusiast.", 
+                "I'm a high school student&nbsp; <br> and cognition enthusiast.", 
             ],
             'description': [
                 "I spend too much time pondering machine learning, communication, brain-machine interfaces, and metacognition.",
@@ -24,7 +24,8 @@ const sections = {
     'Education': [
         {
             'title': ["The Nueva School", "2017 - 2023"],
-            'description': "I'm a rising senior at [the Nueva school](http://nuevaschool.org/) in the SF Bay Area. At school, I'm a member of [FRC team 4904 Bot Provoking](https://botprovoking.org/) and a Mavericks Admissions Ambassador.",
+            'description': `I'm a senior at [the Nueva school](http://nuevaschool.org/) in the SF Bay Area. On campus, I'm a member of [FRC team 4904 Bot Provoking](https://botprovoking.org/) and Peer Tutoring, a Mavericks Admissions Ambassador, and a peer coach.
+Come freeskate with me! Tuesday at lunch or anytime I'm on wheels.`,
             'iconLeft': true,
             'css': { 'font-family': "'Liberation Sans', sans-serif" },
             'icon': {
