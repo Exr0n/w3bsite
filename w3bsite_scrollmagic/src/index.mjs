@@ -24,7 +24,7 @@ const sections = {
     'Education': [
         {
             'title': ["The Nueva School", "2017 - 2023"],
-            'description': `I'm a senior at [the Nueva school](http://nuevaschool.org/) in the SF Bay Area. On campus, I'm a member of [FRC team 4904 Bot Provoking](https://botprovoking.org/) and Peer Tutoring, a Mavericks Admissions Ambassador, and a peer coach.
+            'description': `I'm a senior at [the Nueva school](http://nuevaschool.org/) in the SF Bay Area. On campus, I'm a member of [FRC team 4904 Bot Provoking](https://botprovoking.org/), Peer Tutoring, and the Mavericks Admissions Ambassadors.
 Come freeskate with me! Tuesday at lunch or anytime I'm on wheels.`,
             'iconLeft': true,
             'css': { 'font-family': "'Liberation Sans', sans-serif" },
@@ -134,7 +134,7 @@ Come freeskate with me! Tuesday at lunch or anytime I'm on wheels.`,
         { 'css': { 'min-height': '30vh', }, },
         {
             'title': "Timelapse Photography",
-            'description': "I like searching for new patterns through the perspective shift of changing your time scales. Sitting still and watching as things happen feels almost like a stoic or zen practice. You can see my time lapses [here](https://www.google.com/search?q=coming+eventually).",
+            'description': "I like searching for new patterns through the perspective shift of changing your time scales. Sitting still and watching as things happen feels almost like a stoic or zen practice. You can see my time lapses [here](http://timelapses.exr0n.com).",
             'iconLeft': true,
             'justify': 'flex-end',
             'flashbacks': [

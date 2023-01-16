@@ -1,6 +1,7 @@
 {
     "private": true,
     "scripts": {
+        "build": "tailwindcss -m -i src/tailwind.css -o public/index.css && webpack build && serve -s public",
         "deploy": "tailwindcss -m -i src/tailwind.css -o public/index.css && webpack build && gh-pages -d public"
     },
     "dependencies": {

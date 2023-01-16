@@ -6,6 +6,9 @@ module.exports = {
             current: 'currentColor',
             'dark': '#101010',
             'primary': '#f0f0ff',
+            // cursed light mode
+            //'dark': '#dbdbd5',
+            //'primary': '101020',
             'accent': '#326ccc',
         },
         extend: {},
